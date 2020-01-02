@@ -4,14 +4,14 @@ import (
 	"encoding/json"
 	"fmt"
 
-	scribble "github.com/nanobox-io/golang-scribble"
+	scribble "github.com/wanghonggao007/golang-scribble"
 )
 
 // a fish
 type Fish struct{ Name string }
 
 func main() {
-
+	fmt.Println("main start")
 	dir := "./"
 
 	db, err := scribble.New(dir, nil)
@@ -22,6 +22,7 @@ func main() {
 	// Write a fish to the database
 	for _, name := range []string{"onefish", "twofish", "redfish", "bluefish"} {
 		db.Write("fish", name, Fish{Name: name})
+		db.Write("fish", "fish1", Fish{Name: "fish11"})
 	}
 
 	// Read a fish from the database (passing fish by reference)
@@ -44,7 +45,7 @@ func main() {
 		}
 		fishies = append(fishies, fishFound)
 	}
-
+	fmt.Println(fishies)
 	// // Delete a fish from the database
 	// if err := db.Delete("fish", "onefish"); err != nil {
 	// 	fmt.Println("Error", err)
